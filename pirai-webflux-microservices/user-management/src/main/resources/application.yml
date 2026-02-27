@@ -1,0 +1,39 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: user-management
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/user
+    username: postgres
+    password: postgres
+    sql:
+      init:
+        mode: always
+  cloud:
+    discovery:
+      client:
+        service-url:
+          defaultZone: http://localhost:8761/eureka/
+  messages:
+    basename: message
+    fallback-to-system-locale: true
+
+logging:
+  level:
+    org.springframework.r2dbc: DEBUG
+    io.r2dbc: DEBUG
+    reactor: DEBUG
+
+pirai:
+  dbConfig: create
+  gateWay:
+    url: http://localhost:8082
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka
+#    instance:
+#      hostname: localhost
